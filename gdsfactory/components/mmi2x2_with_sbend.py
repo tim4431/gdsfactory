@@ -68,10 +68,15 @@ def mmi2x2_with_sbend(
             "o1", destination=bottom_output_block.ports["o2"]
         )
 
-        c.add_port("o1", port=bottom_input_sbend_ref.ports["o2"])
+        # c.add_port("o1", port=top_input_sbend_ref.ports["o2"])
+        # c.add_port("o2", port=top_output_sbend_ref.ports["o2"])
+        # c.add_port("o3", port=bottom_output_sbend_ref.ports["o2"])
+        # c.add_port("o4", port=bottom_input_sbend_ref.ports["o2"])
+        # Tim: Why redefine?
         c.add_port("o2", port=top_input_sbend_ref.ports["o2"])
         c.add_port("o3", port=top_output_sbend_ref.ports["o2"])
         c.add_port("o4", port=bottom_output_sbend_ref.ports["o2"])
+        c.add_port("o1", port=bottom_input_sbend_ref.ports["o2"])
 
     else:
         c.add_port("o2", port=top_input_block.ports["o1"])

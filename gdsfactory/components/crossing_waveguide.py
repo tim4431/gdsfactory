@@ -235,8 +235,8 @@ def crossing45(
     dx: Optional[float] = None,
     alpha: float = 0.08,
     npoints: int = 101,
-    cross_section: CrossSectionSpec = "strip",
-) -> Component:
+    cross_section: CrossSectionSpec = "strip",**kwargs
+) -> Component: #Tim: add kwargs
     r"""Returns 45deg crossing with bends.
 
     Args:
@@ -293,7 +293,8 @@ def crossing45(
         start_angle=start_angle,
         end_angle=end_angle,
         npoints=npoints,
-    )
+        cross_section=cross_section,  # Tim: add crosssection and cladding
+        **kwargs)
 
     tol = 1e-2
     assert abs(bend.info["start_angle"] - start_angle) < tol, print(
@@ -336,6 +337,7 @@ def compensation_path(
     crossing45: ComponentSpec = crossing45,
     direction: str = "top",
     cross_section: CrossSectionSpec = "strip",
+    **kwargs  #Tim: add kwargs
 ) -> Component:
     r"""Returns Component Path with same path length as the crossing.
 
@@ -416,7 +418,8 @@ def compensation_path(
     y_bend = snap_to_grid(y_bend)
 
     v_mirror = direction != "top"
-    sbend = bezier(control_points=get_control_pts(x0, y_bend))
+    sbend = bezier(control_points=get_control_pts(x0, y_bend),cross_section=cross_section,
+                   **kwargs)  # Tim: add cross_section,kwargs)
 
     c = Component()
     crossing0 = c << crossing45.crossing
