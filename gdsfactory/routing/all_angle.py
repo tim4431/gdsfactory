@@ -466,10 +466,11 @@ def _get_minimum_separation(refs: List[ComponentReference], *ports) -> float:
             if separation > max_specified_separation:
                 max_specified_separation = separation
 
-    if max_specified_separation == 0:
-        raise ValueError(
-            "Cannot automatically determine separation. No ports in route have a cross_section which declares a default separation value!"
-        )
+    # TODO:Tim
+    # if max_specified_separation == 0:
+    #     raise ValueError(
+    #         "Cannot automatically determine separation. No ports in route have a cross_section which declares a default separation value!"
+    #     )
     return max_specified_separation
 
 
